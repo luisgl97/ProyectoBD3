@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const user = 'tiendavirtual';
 const password = 'bdtiendavirtual';
 const bdname = 'TiendaVirtual'
-const uri = `mongodb+srv://${user}:${password}@tienda-virtual.4kpkz.mongodb.net/${dbname}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${user}:${password}@tienda-virtual.4kpkz.mongodb.net/${bdname}?retryWrites=true&w=majority`;
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Base de datos conectada'))

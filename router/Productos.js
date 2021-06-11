@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const Producto = require('../models/producto');
+
 router.get('/', (req, res) => {
     res.render("productos", {
         arrayProductos: [
