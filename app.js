@@ -1,6 +1,12 @@
 const express = require("express");
+const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
 
 //Coneccion a base de datos
 const mongoose = require('mongoose');
@@ -21,7 +27,7 @@ app.set('views', __dirname + '/views')
 
 
 
-app.use(express.static(__dirname + "/public")); //Middleware: Estamos ejecutando una funcion antes que se haga las solicitudes
+app.use(express.static(__dirname + "/public")); //Middleware: Permitira ejecutar una funcion antes que se haga las solicitudes
 
 //Rutas web
 app.use('/', require('./router/RutasWeb'));
