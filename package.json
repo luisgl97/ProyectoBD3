@@ -5,7 +5,6 @@
     "main": "app.js",
     "scripts": {
         "start": "node app"
-
     },
     "keywords": [],
     "author": "",
@@ -13,7 +12,8 @@
     "dependencies": {
         "cowsay": "^1.5.0",
         "ejs": "^3.1.6",
-        "express": "^4.17.1"
+        "express": "^4.17.1",
+        "mongoose": "^5.12.13"
     },
     "devDependencies": {
         "nodemon": "^2.0.7"

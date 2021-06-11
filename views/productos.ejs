@@ -1,0 +1,41 @@
+<%- include("../template/cabecera",{tituloWeb: 'Pagina de inicio index'}) %>
+
+
+    <div class="container">
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(arrayProductos.length >0){ %>
+                    <% arrayProductos.forEach(producto =>{ %>
+                        <tr>
+                            <th scope="row">
+                                <%= producto.id %>
+                            </th>
+                            <td>
+                                <%= producto.nombre %>
+                            </td>
+                            <td>
+                                <%= producto.descripcion %>
+                            </td>
+                            <td>
+                                <%= producto.precio %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                            <% } %>
+
+            </tbody>
+        </table>
+
+
+    </div>
+    <%- include("../template/footer") %>
