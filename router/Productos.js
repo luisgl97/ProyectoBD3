@@ -7,7 +7,7 @@ router.get('/', async(req, res) => {
 
     try {
         const arrayProductosBD = await Producto.find();
-        console.log(arrayProductosBD);
+
         res.render("productos", { //pintamos
 
             arrayProductos: arrayProductosBD
@@ -25,7 +25,6 @@ router.get('/crear', (req, res) => {
 
 router.post('/', async(req, res) => {
     const body = req.body;
-
     try {
         const productoBD = new Producto(body)
         await productoBD.save()

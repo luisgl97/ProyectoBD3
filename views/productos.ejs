@@ -16,7 +16,10 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Descripcion</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Caracteristicas</th>
                     <th scope="col">Precio</th>
                 </tr>
             </thead>
@@ -31,11 +34,21 @@
                                 <%= producto.nombre %>
                             </td>
                             <td>
-                                <%= producto.descripcion %>
+                                <%= producto.marca %>
                             </td>
                             <td>
-                                <%= producto.precio %>
+                                <%= producto.modelo %>
                             </td>
+                            <td>
+                                <%= producto.producto%>
+                            </td>
+                            <td>
+                                <%= producto.caracteristicas%>
+                            </td>
+                            <td>
+                                <%= producto.precio%>
+                            </td>
+
                         </tr>
                         <% }) %>
                             <% } %>

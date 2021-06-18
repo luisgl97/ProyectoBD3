@@ -3,8 +3,11 @@ const Schema = mongoose.Schema;
 
 const productoSchema = new Schema({
     nombre: String,
-    descripcion: String,
-    precio: String,
+    marca: String,
+    modelo: String,
+    producto: String,
+    caracteristicas: String,
+    precio: Number,
 });
 
 //Crear modelo

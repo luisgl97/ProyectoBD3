@@ -3,9 +3,9 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
-// parse application/x-www-form-urlencoded
+// analizar la aplicación / x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-// parse application/json
+// analizar la aplicación / json
 app.use(bodyParser.json());
 
 //Coneccion a base de datos
