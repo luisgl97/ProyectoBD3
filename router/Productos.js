@@ -58,4 +58,47 @@ router.get('/:id', async(req, res) => {
         })
     }
 })
+
+router.delete('/:id', async(req, res) => {
+    const id = req.params.id;
+    try {
+        const productoBD = await Producto.findByIdAndDelete({ _id: id });
+
+        if (productoBD) {
+            res.json({
+                estado: true,
+                mensaje: 'eliminado!'
+            })
+        } else {
+            res.json({
+                estado: false,
+                mensaje: 'fallo al eliminar'
+            })
+        }
+
+        console.log(productoBD);
+
+        res.render('detalle', {
+            producto: productoBD,
+            error: false
+        })
+    } catch (error) {
+        console.log(error);
+
+        res.render('detalle', {
+            error: true,
+            mensaje: 'No se encuentra el id seleccionado'
+        })
+    }
+})
+
+router.put('/:id', async(req, res) => {
+    const id = req.params.id;
+    const body = req.body; //para capturar los campos de nuestro input (nombre,marca,etc)
+    try {
+
+    } catch (error) {
+
+    }
+})
 module.exports = router;
