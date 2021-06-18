@@ -96,9 +96,18 @@ router.put('/:id', async(req, res) => {
     const id = req.params.id;
     const body = req.body; //para capturar los campos de nuestro input (nombre,marca,etc)
     try {
-
+        const productoBD = await Producto.findByIdAndUpdate(id, body, { useFindAndModify: false })
+        console.log(productoBD)
+        res.json({
+            estado: true,
+            mensaje: 'Editado'
+        })
     } catch (error) {
-
+        console.log(error)
+        res.json({
+            estado: false,
+            mensaje: 'Fallamos!!'
+        })
     }
 })
 module.exports = router;
