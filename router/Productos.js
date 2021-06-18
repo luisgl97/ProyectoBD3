@@ -36,4 +36,26 @@ router.post('/', async(req, res) => {
 
 })
 
+//Buscar un unico documento de la bd
+router.get('/:id', async(req, res) => {
+
+    const id = req.params.id;
+
+    try {
+        const productoBD = await Producto.findOne({ _id: id });
+        console.log(productoBD);
+
+        res.render('detalle', {
+            producto: productoBD,
+            error: false
+        })
+    } catch (error) {
+        console.log(error);
+
+        res.render('detalle', {
+            error: true,
+            mensaje: 'No se encuentra el id seleccionado'
+        })
+    }
+})
 module.exports = router;

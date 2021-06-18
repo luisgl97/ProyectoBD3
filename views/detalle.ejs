@@ -1,0 +1,56 @@
+<%- include("../template/cabecera",{tituloWeb: 'Detalle de producto'}) %>
+
+    <div class="container">
+        <h1>Detalle producto</h1>
+        <% if(error){%>
+            <p>
+                <%= mensaje %>
+
+            </p>
+            <a href="/productos" class="btn btn-dark btn-blovk">Volver a Productos</a>
+            <% } %>
+
+                <% if(!error) {%>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Modelo</th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Caracteristicas</th>
+                                <th scope="col">Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <%= producto.id %>
+                                </th>
+                                <td>
+                                    <%= producto.nombre %>
+                                </td>
+                                <td>
+                                    <%= producto.marca %>
+                                </td>
+                                <td>
+                                    <%= producto.modelo %>
+                                </td>
+                                <td>
+                                    <%= producto.producto%>
+                                </td>
+                                <td>
+                                    <%= producto.caracteristicas%>
+                                </td>
+                                <td>
+                                    <%= producto.precio%>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <% } %>
+    </div>
+
+    <%- include("../template/footer") %>
