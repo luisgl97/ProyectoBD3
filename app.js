@@ -21,7 +21,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .catch(e => console.log(e));
 
 
-//motor de plantillas
+//motor de plantillas .ejs
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views')
 

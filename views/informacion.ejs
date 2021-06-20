@@ -36,7 +36,7 @@
             btnEliminar.addEventListener('click', async() => {
                 console.log('me diste click');
                 const id = btnEliminar.dataset.id;
-                console.log('id', id);
+
                 try {
                     const data = await fetch(`/estudiantes/${id}`, {
                         method: 'delete'
@@ -56,7 +56,7 @@
 
             const formularioEditar = document.querySelector('#formularioEditar');
 
-            formularioEditar.addEventListener('submit', async(e) => {
+            formularioEditar.addEventListener('submit', async(e) => { // ("Se activa cuando el formulario es enviado")
                 e.preventDefault()
 
                 const nombre = formularioEditar.elements['nombre'].value
@@ -64,19 +64,19 @@
                 const codigo = formularioEditar.elements['codigo'].value
                 const sexo = formularioEditar.elements['sexo'].value
 
-                console.log(nombre, id)
+                const id = formularioEditar.dataset.id
+
                 try {
                     const data = await fetch(`/estudiantes/${id}`, {
                         method: 'put',
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({
+                        body: JSON.stringify({ // convierte un objeto o valor de JavaScript en una cadena de texto JSON
                             nombre,
                             universidad,
                             codigo,
                             sexo,
-
                         })
                     })
                     const res = await data.json()

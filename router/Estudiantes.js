@@ -36,23 +36,23 @@ router.post('/', async(req, res) => {
 
 })
 
-//Buscar un unico documento de la bd
-router.get('/:id', async(req, res) => {
+//Buscar un unica estudiante de la bd
+router.get('/:id', async(req, res) => { // Vamos a leer una ruta dinamica
 
     const id = req.params.id;
 
     try {
-        const estudianteBD = await Estudiante.findOne({ _id: id });
-        console.log(estudianteBD);
+        const estudianteBD = await Estudiante.findOne({ _id: id }); //Espera al esquema Estudiante y busca el primer estudiante con esa id
 
-        res.render('detalle', {
+
+        res.render('informacion', {
             estudiante: estudianteBD,
             error: false
         })
     } catch (error) {
         console.log(error);
 
-        res.render('detalle', {
+        res.render('informacion', {
             error: true,
             mensaje: 'No se encuentra el id seleccionado'
         })
@@ -62,10 +62,10 @@ router.get('/:id', async(req, res) => {
 router.delete('/:id', async(req, res) => {
     const id = req.params.id;
     try {
-        const estudianteBD = await Estudiante.findByIdAndDelete({ _id: id });
+        const estudianteBD = await Estudiante.findByIdAndDelete({ _id: id }); //Esperamos al modelo estudiante y Verifica si el id del estudiante esta en la BD
 
-        if (estudianteBD) {
-            res.json({
+        if (estudianteBD) { //Si el estudiante existe
+            res.json({ //Hacemos una respuesta en json
                 estado: true,
                 mensaje: 'eliminado!'
             })
@@ -76,16 +76,16 @@ router.delete('/:id', async(req, res) => {
             })
         }
 
-        console.log(estudianteBD);
+        // console.log(estudianteBD);
 
-        res.render('detalle', {
+        res.render('informacion', {
             estudiante: estudianteBD,
             error: false
         })
     } catch (error) {
         console.log(error);
 
-        res.render('detalle', {
+        res.render('informacion', {
             error: true,
             mensaje: 'No se encuentra el id seleccionado'
         })
@@ -94,10 +94,10 @@ router.delete('/:id', async(req, res) => {
 
 router.put('/:id', async(req, res) => {
     const id = req.params.id;
-    const body = req.body; //para capturar los campos de nuestro input (nombre,marca,etc)
+    const body = req.body; //para capturar los campos de nuestro input (nombre,universidad,etc)
     try {
         const estudianteBD = await Estudiante.findByIdAndUpdate(id, body, { useFindAndModify: false })
-        console.log(estudianteBD)
+            // console.log(estudianteBD)
         res.json({
             estado: true,
             mensaje: 'Editado'
