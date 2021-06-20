@@ -1,28 +1,27 @@
-<%- include("../template/cabecera",{tituloWeb: 'Detalle de producto'}) %>
+<%- include("../template/cabecera",{tituloWeb: 'Informacion del estudiante'}) %>
 
     <div class="container">
-        <h1>Detalle producto</h1>
+        <h1>Informacion del estudiante</h1>
         <% if(error){%>
             <p>
                 <%= mensaje %>
 
             </p>
-            <a href="/productos" class="btn btn-dark btn-blovk">Volver a Productos</a>
+            <a href="/estudiantes" class="btn btn-dark btn-blovk">Volver a Estudiantes</a>
             <% } %>
 
                 <% if(!error) {%>
 
-                    <form id="formularioEditar" data-id=<%=producto.id %>>
-                        <input type="text" class="form-control my-2" name="nombre" value="<%= producto.nombre %>" id="nombreInput">
-                        <input type="text" class="form-control my-2" name="marca" value="<%= producto.marca %>" id="marcaInput">
-                        <input type="text" class="form-control my-2" name="modelo" value="<%= producto.modelo %>" id="modeloInput">
-                        <input type="text" class="form-control my-2" name="producto" value="<%= producto.producto %>" id="productoInput">
-                        <input type="text" class="form-control my-2" name="caracteristicas" value="<%= producto.caracteristicas %>" id="caracteristicasInput">
-                        <input type="text" class="form-control my-2" name="precio" value="<%= producto.precio %>" id="precioInput">
+                    <form id="formularioEditar" data-id=<%=estudiante.id %>>
+                        <input type="text" class="form-control my-2" name="nombre" value="<%= estudiante.nombre %>" id="nombreInput">
+                        <input type="text" class="form-control my-2" name="universidad" value="<%= estudiante.universidad %>" id="universidadInput">
+                        <input type="text" class="form-control my-2" name="codigo" value="<%= estudiante.codigo %>" id="codigoInput">
+                        <input type="text" class="form-control my-2" name="sexo" value="<%= estudiante.sexo %>" id="sexoInput">
+
                         <button class="btn btn-warning btn-block" type="submit">Editar</button>
                     </form>
                     <hr>
-                    <button class="btn btn-danger btn-sm mt-5" id="btnEliminar" data-id=<%=producto.id %>>
+                    <button class="btn btn-danger btn-sm mt-5" id="btnEliminar" data-id=<%=estudiante.id %>>
                         Eliminar
                     </button>
 
@@ -39,13 +38,13 @@
                 const id = btnEliminar.dataset.id;
                 console.log('id', id);
                 try {
-                    const data = await fetch(`/productos/${id}`, {
+                    const data = await fetch(`/estudiantes/${id}`, {
                         method: 'delete'
                     })
 
                     const res = await data.json()
                     if (res.estado) {
-                        window.location.href = '/productos'
+                        window.location.href = '/estudiantes'
                     } else {
                         console.log(res)
                     }
@@ -61,32 +60,29 @@
                 e.preventDefault()
 
                 const nombre = formularioEditar.elements['nombre'].value
-                const marca = formularioEditar.elements['marca'].value
-                const modelo = formularioEditar.elements['modelo'].value
-                const producto = formularioEditar.elements['producto'].value
-                const caracteristicas = formularioEditar.elements['caracteristicas'].value
-                const precio = formularioEditar.elements['precio'].value
-                const id = formularioEditar.dataset.id
+                const universidad = formularioEditar.elements['universidad'].value
+                const codigo = formularioEditar.elements['codigo'].value
+                const sexo = formularioEditar.elements['sexo'].value
+
                 console.log(nombre, id)
                 try {
-                    const data = await fetch(`/productos/${id}`, {
+                    const data = await fetch(`/estudiantes/${id}`, {
                         method: 'put',
                         headers: {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
                             nombre,
-                            marca,
-                            modelo,
-                            producto,
-                            caracteristicas,
-                            precio
+                            universidad,
+                            codigo,
+                            sexo,
+
                         })
                     })
                     const res = await data.json()
 
                     if (res.estado) {
-                        window.location.href = '/productos'
+                        window.location.href = '/estudiantes'
                     } else {
                         console.log(res)
                     }

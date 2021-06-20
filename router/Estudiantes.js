@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const Producto = require('../models/producto');
+const Estudiante = require('../models/estudiante');
 
 router.get('/', async(req, res) => {
 
     try {
-        const arrayProductosBD = await Producto.find();
+        const arrayEstudiantesBD = await Estudiante.find();
 
-        res.render("productos", { //pintamos
+        res.render("estudiantes", { //pintamos
 
-            arrayProductos: arrayProductosBD
+            arrayEstudiantes: arrayEstudiantesBD
 
         })
     } catch (error) {
@@ -26,10 +26,10 @@ router.get('/crear', (req, res) => {
 router.post('/', async(req, res) => {
     const body = req.body;
     try {
-        const productoBD = new Producto(body)
-        await productoBD.save()
-        res.redirect('/productos')
-        console.log('Producto creado:', productoBD)
+        const estudianteBD = new Estudiante(body)
+        await estudianteBD.save()
+        res.redirect('/estudiantes')
+        console.log('Estudiante creado:', estudianteBD)
     } catch (error) {
         console.log(error)
     }
@@ -42,11 +42,11 @@ router.get('/:id', async(req, res) => {
     const id = req.params.id;
 
     try {
-        const productoBD = await Producto.findOne({ _id: id });
-        console.log(productoBD);
+        const estudianteBD = await Estudiante.findOne({ _id: id });
+        console.log(estudianteBD);
 
         res.render('detalle', {
-            producto: productoBD,
+            estudiante: estudianteBD,
             error: false
         })
     } catch (error) {
@@ -62,9 +62,9 @@ router.get('/:id', async(req, res) => {
 router.delete('/:id', async(req, res) => {
     const id = req.params.id;
     try {
-        const productoBD = await Producto.findByIdAndDelete({ _id: id });
+        const estudianteBD = await Estudiante.findByIdAndDelete({ _id: id });
 
-        if (productoBD) {
+        if (estudianteBD) {
             res.json({
                 estado: true,
                 mensaje: 'eliminado!'
@@ -76,10 +76,10 @@ router.delete('/:id', async(req, res) => {
             })
         }
 
-        console.log(productoBD);
+        console.log(estudianteBD);
 
         res.render('detalle', {
-            producto: productoBD,
+            estudiante: estudianteBD,
             error: false
         })
     } catch (error) {
@@ -96,8 +96,8 @@ router.put('/:id', async(req, res) => {
     const id = req.params.id;
     const body = req.body; //para capturar los campos de nuestro input (nombre,marca,etc)
     try {
-        const productoBD = await Producto.findByIdAndUpdate(id, body, { useFindAndModify: false })
-        console.log(productoBD)
+        const estudianteBD = await Estudiante.findByIdAndUpdate(id, body, { useFindAndModify: false })
+        console.log(estudianteBD)
         res.json({
             estado: true,
             mensaje: 'Editado'

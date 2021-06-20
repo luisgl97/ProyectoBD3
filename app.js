@@ -1,9 +1,9 @@
 const express = require("express");
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser'); //Nos servira para leer el formulario o los campos que llenaremos a partir de la interfaz
 const app = express();
 const port = 3000;
 
-// analizar la aplicación / x-www-form-urlencoded
+// analizar la aplicaciones con formulario
 app.use(bodyParser.urlencoded({ extended: false }));
 // analizar la aplicación / json
 app.use(bodyParser.json());
@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 
 const user = 'tiendavirtual';
 const password = 'bdtiendavirtual';
-const bdname = 'TiendaVirtual'
+const bdname = 'Inscripcion'
 const uri = `mongodb+srv://${user}:${password}@tienda-virtual.4kpkz.mongodb.net/${bdname}?retryWrites=true&w=majority`;
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -31,7 +31,7 @@ app.use(express.static(__dirname + "/public")); //Middleware: Permitira ejecutar
 
 //Rutas web
 app.use('/', require('./router/RutasWeb'));
-app.use('/productos', require('./router/Productos'))
+app.use('/estudiantes', require('./router/Estudiantes'))
 
 
 app.use((req, res, next) => {
