@@ -20,19 +20,15 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Base de datos conectada'))
     .catch(e => console.log(e));
 
-
 //motor de plantillas
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views')
-
-
 
 app.use(express.static(__dirname + "/public")); //Middleware: Permitira ejecutar una funcion antes que se haga las solicitudes
 
 //Rutas web
 app.use('/', require('./router/RutasWeb'));
 app.use('/productos', require('./router/Productos'))
-
 
 app.use((req, res, next) => {
     res.status(404).render("404", {
