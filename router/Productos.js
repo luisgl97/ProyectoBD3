@@ -92,6 +92,7 @@ router.delete('/:id', async(req, res) => {
     }
 })
 
+/*Actualizar */
 router.put('/:id', async(req, res) => {
     const id = req.params.id;
     const body = req.body; //para capturar los campos de nuestro input (nombre,marca,etc)

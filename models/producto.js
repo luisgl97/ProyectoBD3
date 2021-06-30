@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+/*Esquema del producto*/
 const productoSchema = new Schema({
     nombre: String,
     marca: String,
