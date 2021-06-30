@@ -1,0 +1,97 @@
+<%- include("../template/cabecera",{tituloWeb: 'Detalle de producto'}) %>
+
+    <div class="container">
+        <h1>Detalle producto</h1>
+        <% if(error){%>
+            <p>
+                <%= mensaje %>
+
+            </p>
+            <a href="/productos" class="btn btn-dark btn-blovk">Volver a Productos</a>
+            <% } %>
+
+                <% if(!error) {%>
+
+                    <form id="formularioEditar" data-id=<%=producto.id %>>
+                        <input type="text" class="form-control my-2" name="nombre" value="<%= producto.nombre %>" id="nombreInput">
+                        <input type="text" class="form-control my-2" name="marca" value="<%= producto.marca %>" id="marcaInput">
+                        <input type="text" class="form-control my-2" name="modelo" value="<%= producto.modelo %>" id="modeloInput">
+                        <input type="text" class="form-control my-2" name="producto" value="<%= producto.producto %>" id="productoInput">
+                        <input type="text" class="form-control my-2" name="caracteristicas" value="<%= producto.caracteristicas %>" id="caracteristicasInput">
+                        <input type="text" class="form-control my-2" name="precio" value="<%= producto.precio %>" id="precioInput">
+                        <button class="btn btn-warning btn-block" type="submit">Editar</button>
+                    </form>
+                    <hr>
+                    <button class="btn btn-danger btn-sm mt-5" id="btnEliminar" data-id=<%=producto.id %>>
+                        Eliminar
+                    </button>
+
+                    <% } %>
+    </div>
+
+    <%- include("../template/footer") %>
+
+        <script>
+            const btnEliminar = document.querySelector('#btnEliminar');
+
+            btnEliminar.addEventListener('click', async() => {
+                console.log('me diste click');
+                const id = btnEliminar.dataset.id;
+                console.log('id', id);
+                try {
+                    const data = await fetch(`/productos/${id}`, {
+                        method: 'delete'
+                    })
+
+                    const res = await data.json()
+                    if (res.estado) {
+                        window.location.href = '/productos'
+                    } else {
+                        console.log(res)
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
+            })
+
+
+            const formularioEditar = document.querySelector('#formularioEditar');
+
+            formularioEditar.addEventListener('submit', async(e) => {
+                e.preventDefault()
+
+                const nombre = formularioEditar.elements['nombre'].value
+                const marca = formularioEditar.elements['marca'].value
+                const modelo = formularioEditar.elements['modelo'].value
+                const producto = formularioEditar.elements['producto'].value
+                const caracteristicas = formularioEditar.elements['caracteristicas'].value
+                const precio = formularioEditar.elements['precio'].value
+                const id = formularioEditar.dataset.id
+                console.log(nombre, id)
+                try {
+                    const data = await fetch(`/productos/${id}`, {
+                        method: 'put',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            nombre,
+                            marca,
+                            modelo,
+                            producto,
+                            caracteristicas,
+                            precio
+                        })
+                    })
+                    const res = await data.json()
+
+                    if (res.estado) {
+                        window.location.href = '/productos'
+                    } else {
+                        console.log(res)
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
+            })
+        </script>

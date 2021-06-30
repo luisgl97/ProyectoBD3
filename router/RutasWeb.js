@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render("index", { titulo: "Tienda Virtual" });
+    res.render("index", { titulo: "mi titulo dinamico" });
 })
 
 // router.get('/servicios', (req, res) => {
